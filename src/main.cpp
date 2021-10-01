@@ -2,8 +2,10 @@
 #include <chrono>
 #include <string>
 #include <time.h>
+#include <thread>
 
 const int LAST_MINUTES = 20;
+const int SLEEP_MINUTES = 2;
 
 void printNow() { // a function just to print now time format.
     time_t timer;
@@ -27,6 +29,9 @@ int main(int, char**) {
             printNow();
             now = n + std::chrono::seconds(60);
             notifySeconds = now + lastTime;
+        } else {
+            std::chrono::minutes sleepTime = std::chrono::minutes(SLEEP_MINUTES);
+            std::this_thread::sleep_for(sleepTime);
         }
     }
 
