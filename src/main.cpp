@@ -3,6 +3,7 @@
 #include <string>
 #include <time.h>
 #include <thread>
+#include <windows.h>
 
 const int LAST_MINUTES = 20;
 const int SLEEP_MINUTES = 2;
@@ -20,11 +21,12 @@ std::string getNowStr() { // a function just to print now time format.
 
 int main(int, char**) {
     std::cout << "Protect eye Starting, now is: " << getNowStr() << std::endl;
+    //system("notify-send 'you need take a rest at least for twenty seconds' -t 6000");
     std::chrono::minutes lastTime =  std::chrono::minutes(LAST_MINUTES);
     while (true)
     {
         std::this_thread::sleep_for(lastTime);
-        system("notify-send 'you need take a rest at least for twenty seconds' -t 6000");
+        MessageBox(nullptr, "Look six meters at least tewenty seconds", "You need to let you eye break", MB_OK);
         std::cout << "Notify time is: " << getNowStr() << std::endl;
     }
 }
